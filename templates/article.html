@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {# Inherits from the base.html template #} {% block
+title %}Article Detail{% endblock %} {# Overrides the 'title' block #} {% block
+content %} {# Overrides the 'content' block #}
+<h2>Article Content</h2>
+<div class="article-content">
+  {% comment %} The '|safe' filter tells Django not to escape the HTML in the
+  'content' variable. Use with EXTREME CAUTION and only if you are sure of the
+  HTML source! If the HTML comes from an untrusted source (e.g., user input), it
+  must be properly sanitized in Python before using |safe. {% endcomment %} {{
+  content|safe }}
+</div>
+<p><a href="/">Back to home</a></p>
+{% endblock %}

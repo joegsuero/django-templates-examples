@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Store - Home</title>
+    {% load static %} {# Loads the 'static' tag to use static files #} {% load
+    custom_filters %} {# Loads your custom filters #} {% load cache %} {# Loads the
+    'cache' tag #}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to My Django Store</h1>
+    </header>
+
+    <main>
+      <h2>Hello, {{ username }}!</h2>
+
+      <h3>Our Featured Products:</h3>
+      <ul>
+        {% for product in products %}
+        <li>
+          {{ product.name }} - {{ product.price|currency_format:"$" }} {% if
+          product.price|is_even %} (Special offer!) {% endif %}
+        </li>
+        {% empty %}
+        <li>No products available at the moment.</li>
+        {% endfor %}
+      </ul>
+
+      <p>The current date and time is: {{ now|date:"d M Y H:i:s" }}</p>
+      {# Example of 'date' filter #}
+
+      <h3>Fragment Cache Example:</h3>
+      {% comment %} The 'cache' tag stores the content of this block for a
+      defined time. It requires you to configure a cache backend in settings.py.
+      'sidebar_products' is a unique key for this fragment. '500' is the time in
+      seconds it will be cached. {% endcomment %} {% cache 500 sidebar_products
+      %}
+      <div class="cached-content">
+        <h4>Best-selling products (cached content)</h4>
+        <ul>
+          {% for p in top_selling_products %}
+          <li>{{ p.name }}</li>
+          {% endfor %}
+        </ul>
+        <p>This content was last rendered at: {% now "H:i:s" %}</p>
+      </div>
+      {% endcache %}
+
+      <p>
+        <a href="/products/">View all products</a>
+      </p>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 My Django Application</p>
+    </footer>
+  </body>
+</html>

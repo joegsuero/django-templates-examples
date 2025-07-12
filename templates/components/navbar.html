@@ -1,0 +1,71 @@
+{% load static %} {% load custom_tags %}
+
+<nav class="main-nav">
+  <ul>
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'products' %}">Products</a></li>
+    <li><a href="{% url 'article_detail' %}">Article (Safe)</a></li>
+    {% comment %} The 'user' and 'is_staff' objects are passed by the
+    'inclusion_tag' in mi_tags.py. Checks if the user is authenticated and if
+    they are a staff member. {% endcomment %} {% if user.is_authenticated %}
+    <li>Hello, <span class="username">{{ user.username }}</span></li>
+    {% if is_staff %}
+    <li><a href="{% url 'admin:index' %}">Admin</a></li>
+    {% endif %}
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    {% else %}
+    <li><a href="{% url 'login' %}">Login</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+<style>
+  /* Basic styles for the navigation bar */
+  .main-nav {
+    background-color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  .main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows elements to wrap on small screens */
+  }
+  .main-nav li {
+    margin: 0 15px;
+  }
+  .main-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .main-nav a:hover {
+    background-color: #555;
+  }
+  .main-nav .username {
+    color: #00ffcc; /* A distinctive color for the username */
+    font-weight: bold;
+    padding: 8px 12px;
+    display: block;
+  }
+
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    .main-nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+    .main-nav li {
+      margin: 5px 0;
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
