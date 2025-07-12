@@ -5,9 +5,11 @@
   <img src="{% static 'images/placeholder.png' %}" alt="Image of {{ product.name }}" class="product-image" />
   <h3>{{ product.name }}</h3>
   <p>Price: {{ product.price|currency_format }}</p>
-  {% comment %} The 'url' tag generates a dynamic URL using the URL name and
+  {% comment %}
+  The 'url' tag generates a dynamic URL using the URL name and
   arguments. 'product_detail' is the URL name defined in mi_app/urls.py.
-  'product.id' is the argument passed to the URL. {% endcomment %}
+  'product.id' is the argument passed to the URL.
+  {% endcomment %}
   {% if show_details %}
   <a href="{% url 'product_detail' product.id %}" class="button">View details</a>
   {% endif %}
@@ -15,7 +17,6 @@
 </div>
 
 <style>
-  /* Basic styles for the product card */
   .product-card {
     border: 1px solid #ddd;
     border-radius: 8px;

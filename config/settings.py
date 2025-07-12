@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'example',
     'htmlmin',
-
 ]
 
 MIDDLEWARE = [
@@ -51,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # Middleware para compresión de HTML
+    # Middleware for HTML compression
     'htmlmin.middleware.HtmlMinifyMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',
 ]
@@ -122,7 +120,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-# Directorios adicionales donde Django buscará archivos estáticos
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
@@ -132,8 +129,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Configuración de caché (necesaria para {% cache %})
-# Para desarrollo, puedes usar LocMemCache. Para producción, considera Redis o Memcached.
+# Configuration for enable the template caching
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -141,6 +137,5 @@ CACHES = {
     }
 }
 
-# Configuración para django-htmlmin
-HTML_MINIFY = True  # Activa la minificación de HTML
-KEEP_COMMENTS_ON_MINIFYING = False  # Elimina los comentarios HTML
+HTML_MINIFY = True
+KEEP_COMMENTS_ON_MINIFYING = False

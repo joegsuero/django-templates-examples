@@ -20,10 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('example.urls')),
-    # URLs de autenticación (placeholders para el ejemplo del navbar)
-    # En una app real, usarías django.contrib.auth.urls o tus propias vistas.
-    # Redirige al admin login por simplicidad
     path('login/', admin.site.login, name="login"),
-    # Redirige al admin logout por simplicidad
     path('logout/', admin.site.logout, name="logout"),
 ]

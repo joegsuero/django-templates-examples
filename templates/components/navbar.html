@@ -1,13 +1,17 @@
-{% load static %} {% load custom_tags %}
+{% load static %}
+{% load custom_tags %}
 
 <nav class="main-nav">
   <ul>
     <li><a href="{% url 'home' %}">Home</a></li>
     <li><a href="{% url 'products' %}">Products</a></li>
     <li><a href="{% url 'article_detail' %}">Article (Safe)</a></li>
-    {% comment %} The 'user' and 'is_staff' objects are passed by the
+    {% comment %}
+    The 'user' and 'is_staff' objects are passed by the
     'inclusion_tag' in mi_tags.py. Checks if the user is authenticated and if
-    they are a staff member. {% endcomment %} {% if user.is_authenticated %}
+    they are a staff member.
+    {% endcomment %}
+    {% if user.is_authenticated %}
     <li>Hello, <span class="username">{{ user.username }}</span></li>
     {% if is_staff %}
     <li><a href="{% url 'admin:index' %}">Admin</a></li>
@@ -20,7 +24,6 @@
 </nav>
 
 <style>
-  /* Basic styles for the navigation bar */
   .main-nav {
     background-color: #333;
     padding: 10px 20px;
@@ -35,7 +38,6 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* Allows elements to wrap on small screens */
   }
 
   .main-nav li {
@@ -57,13 +59,11 @@
 
   .main-nav .username {
     color: #00ffcc;
-    /* A distinctive color for the username */
     font-weight: bold;
     padding: 8px 12px;
     display: block;
   }
 
-  /* Media queries for responsiveness */
   @media (max-width: 768px) {
     .main-nav ul {
       flex-direction: column;
