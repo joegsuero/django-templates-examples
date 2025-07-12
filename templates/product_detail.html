@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {# Inherits from the base.html template #}
+
+{% block title %}Product Detail{% endblock %} {# Overrides the 'title' block #}
+
+{% block content %} {# Overrides the 'content' block #}
+<h2>Product Detail #{{ product.id }}</h2>
+<p>This is an example page for a product detail.</p>
+{% include 'components/product_card.html' with product=product %}
+<p><a href="{% url 'products' %}">Back to product list</a></p>
+<p><a href="{% url 'home' %}">Back to home</a></p>
+{% endblock %}

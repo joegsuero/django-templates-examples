@@ -1,6 +1,13 @@
 from django.shortcuts import render
-from django.utils.html import mark_safe
+from django.utils.safestring import mark_safe
 from datetime import datetime
+
+products_list = [
+    {'name': 'Laptop', 'price': 1200, 'id': 1},
+    {'name': 'Monitor', 'price': 300, 'id': 2},
+    {'name': 'Keyboard', 'price': 75, 'id': 3},
+    {'name': 'Mouse', 'price': 25, 'id': 4},
+]
 
 
 def home(request):
@@ -29,12 +36,7 @@ def products(request):
     View for the products page, demonstrating template inheritance and inclusion.
     """
     context = {
-        'products': [
-            {'name': 'Laptop', 'price': 1200, 'id': 1},
-            {'name': 'Monitor', 'price': 300, 'id': 2},
-            {'name': 'Keyboard', 'price': 75, 'id': 3},
-            {'name': 'Mouse', 'price': 25, 'id': 4},
-        ]
+        'products': products_list
     }
     return render(request, 'products.html', context)
 
@@ -55,4 +57,9 @@ def product_detail(request, product_id):
     Example view for a product detail (used in {% url %}).
     Does not implement real logic, just a simple response.
     """
-    return render(request, 'product_detail.html', {'product_id': product_id})  # You would need to create product_detail.html
+    product = None
+    for prod in products_list:
+        if prod.get("id") == product_id:
+            product = prod
+            break
+    return render(request, 'product_detail.html', {'product': product})

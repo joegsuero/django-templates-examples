@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Products - My Application{% endblock %}
+
+{% block content %}
+<h2>Product Listing</h2>
+<div class="product-grid">
+    {% for prod in products %}
+    {% include 'components/product_card.html' with product=prod show_details=True %}
+    {% endfor %}
+</div>
+{% endblock %}

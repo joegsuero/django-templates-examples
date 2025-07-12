@@ -14,7 +14,7 @@ def get_current_time(format_string):
     return datetime.now().strftime(format_string)
 
 
-@register.inclusion_tag('componentes/navbar.html', takes_context=True)
+@register.inclusion_tag('components/navbar.html', takes_context=True)
 def show_navbar(context):
     """
     Tag de inclusión que renderiza un componente de navegación.

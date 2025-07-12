@@ -4,10 +4,10 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),  # URL para la página de inicio
     # URL para la página de productos
-    path('productos/', views.productos, name='productos'),
+    path('products/', views.products, name='products'),
     # URL para el ejemplo de mark_safe
-    path('articulo/', views.articulo_detalle, name='articulo_detalle'),
+    path('article/', views.article_detail, name='article_detail'),
     # URL de ejemplo para el detalle de un producto (usada en tarjeta_producto.html)
-    path('productos/<int:producto_id>/',
-         views.detalle_producto, name='detalle_producto'),
+    path('products/<int:product_id>/',
+         views.product_detail, name='product_detail'),
 ]

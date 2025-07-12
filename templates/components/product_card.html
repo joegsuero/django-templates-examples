@@ -1,20 +1,17 @@
-{% load custom_filters %} {# Loads your custom filters to use currency_format #} {%
-load static %} {# Loads the 'static' tag to use static files #}
+{% load custom_filters %} {# Loads your custom filters to use currency_format #}
+{% load static %} {# Loads the 'static' tag to use static files #}
 
 <div class="product-card">
-  <img
-    src="{% static 'images/placeholder.png' %}"
-    alt="Image of {{ product.name }}"
-    class="product-image"
-  />
+  <img src="{% static 'images/placeholder.png' %}" alt="Image of {{ product.name }}" class="product-image" />
   <h3>{{ product.name }}</h3>
   <p>Price: {{ product.price|currency_format }}</p>
   {% comment %} The 'url' tag generates a dynamic URL using the URL name and
   arguments. 'product_detail' is the URL name defined in mi_app/urls.py.
   'product.id' is the argument passed to the URL. {% endcomment %}
-  <a href="{% url 'product_detail' product.id %}" class="button"
-    >View details</a
-  >
+  {% if show_details %}
+  <a href="{% url 'product_detail' product.id %}" class="button">View details</a>
+  {% endif %}
+
 </div>
 
 <style>
@@ -29,24 +26,29 @@ load static %} {# Loads the 'static' tag to use static files #}
     background-color: #fff;
     transition: transform 0.2s ease-in-out;
   }
+
   .product-card:hover {
     transform: translateY(-5px);
   }
+
   .product-card h3 {
     color: #333;
     margin-top: 10px;
     margin-bottom: 5px;
   }
+
   .product-card p {
     color: #666;
     font-size: 0.9em;
     margin-bottom: 15px;
   }
+
   .product-card .product-image {
     max-width: 100%;
     height: auto;
     border-radius: 4px;
   }
+
   .product-card .button {
     display: inline-block;
     background-color: #007bff;
@@ -57,9 +59,11 @@ load static %} {# Loads the 'static' tag to use static files #}
     font-size: 0.9em;
     transition: background-color 0.2s;
   }
+
   .product-card .button:hover {
     background-color: #0056b3;
   }
+
   .grid-products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

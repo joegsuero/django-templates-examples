@@ -1,30 +1,33 @@
-{% load static %} {# Loads the 'static' tag to use static files #} {% load
-custom_tags %} {# Loads your custom tags, including show_navbar #}
+{% load static %} {# Loads the 'static' tag to use static files #}
+{% load custom_tags %} {# Loads your custom tags, including show_navbar #}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}My Application{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  </head>
-  <body>
-    <header>
-      <h1>My Django Application</h1>
-      {% comment %} Includes the inclusion tag for the navigation component.
-      This tag will render templates/componentes/navbar.html. {% endcomment %}
-      {% show_navbar %}
-    </header>
 
-    <main>
-      {% block content %} {# Main content that will be overridden by child
-      templates #}
-      <p>This is the default content of the base template.</p>
-      {% endblock %}
-    </main>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}My Application{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
 
-    <footer>
-      <p>&copy; 2025 My Application</p>
-    </footer>
-  </body>
+<body>
+  <header>
+    <h1>Django Templates Examples</h1>
+    {% comment %} Includes the inclusion tag for the navigation component.
+    This tag will render templates/components/navbar.html. {% endcomment %}
+    {% show_navbar %}
+  </header>
+
+  <main>
+    {% block content %} {# Main content that will be overridden by child
+    templates #}
+    <p>This is the default content of the base template.</p>
+    {% endblock %}
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Django Templates Examples</p>
+  </footer>
+</body>
+
 </html>
