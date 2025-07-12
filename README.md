@@ -1,8 +1,8 @@
 ---
-
 ## Django Templates: From Fundamentals to Advanced Tricks
 
 This repository contains all the code examples discussed in the blog post "Django Templates: From Fundamentals to Advanced Tricks." It's designed for you to easily **explore, understand, and test** the concepts of Django's templating engine.
+---
 
 ---
 
